@@ -6,15 +6,27 @@ import "./Ownable.sol";
 //register owner as seller first
 
 contract Counterfeit is Ownable {
-   
 
     constructor() {
-       
+        products.push(Product(0, 0, "dummyProduct", true));
+        sellers.push(sellerDetails(0, "dummySeller", "dummySeller"));
         emit constructorSet(msg.sender);
     }
 
     //----------------Events----------------//
     event constructorSet(address setter);
+    event newProductAdded(uint256 productId, address owner);
+    event productPurchased(address buyer);
+    event productSoldSuccessfully(
+        uint256 productId,
+        address seller,
+        address buyer
+    );
+    event productPurchasedByConsumer(uint256 productId, address buyer);
+    event newSellerRegistered(string name, address seller);
+    event sideContractSet(address setter, address setTo);
+
+    //--------------Structs---------------//
 
     struct Product {
         uint256 productId;
@@ -40,31 +52,124 @@ contract Counterfeit is Ownable {
 
     //--------------Mappings--------------//
 
+    mapping(address => uint256) sellerAddressToSellerIndex;
+
+    //tells who is the owner of product
+    mapping(uint256 => uint256) private productIdToProductIndex;
+    mapping(bytes32 => uint256) private secretIdToProductIndex;
+
     //who owns how many product
     mapping(address => uint256) private ownerProductCount;
-  
+    mapping(uint256 => bool) productIdUsedForReport;
     mapping(uint256 => address) private productToOwner;
 
+    //-------------Mappings End-----------//
+
+    //-------------Modifiers--------------//
+
+    modifier sellerCheck(uint256 _productId) {
+        // check if the seller owns the product or not...
+        address productOwner = productToOwner[_productId];
+        require(msg.sender == productOwner, "You do not own this product");
+        _;
+    }
+
+    modifier soldCheck(uint256 _productId) {
+        // finding product index
+        uint256 productIndex = productIdToProductIndex[_productId];
+
+        // finding product from index
+        bool isSold = products[productIndex].isSold;
+
+        require(isSold == false, "product is already sold");
+        _;
+    }
+   
+
+    //-----------Modifiers End------------//
+
+    //------------Functions---------------//
 
     // should be called by consumers
     function buyProduct(bytes32 _secretId)
         external
         returns (bool)
     {
-       
+        // finding product index using secret id from the in the common storage...
+        uint256 productIndex = secretIdToProductIndex[_secretId];
+
+        // productId from product
+        uint256 productId = products[productIndex].productId;
+
+        // product current owner from productId
+        address productOwner = productToOwner[productId];
+
+        require(
+            ownerProductCount[productOwner] > 0,
+            "seller product count is 0"
+        );
+
+        require(
+            products[productIndex].isSold == false,
+            "Secret id is scanned before"
+        );
+
+        // marking product as soldi i.e. bought by consumer
+        products[productIndex].isSold = true;
+        productToOwner[productId] = address(0);
+        // reducing owner count
+        ownerProductCount[productOwner]--;
+
+        emit productPurchasedByConsumer(productId, msg.sender);
+
+        return true;
     }
 
     function getAllProducts() public view returns (Product[] memory) {
-       
+        uint256 productCount = ownerProductCount[msg.sender];
+        require(productCount > 0, "No products");
+
+        // push method not available for memory array...
+        Product[] memory ownedProducts = new Product[](productCount);
+        uint256 j = 0;
+
+        for (uint256 i = 0; i < products.length; i++) {
+            if (productToOwner[products[i].productId] == msg.sender) {
+                ownedProducts[j] = products[i];
+                j++;
+            }
+        }
+        return ownedProducts;
     }
 
     // should be called for reselling
     function sellProduct(uint256 _productId, address _buyerAddress)
         external
-       
+        sellerCheck(_productId)
+        soldCheck(_productId)
         returns (bool)
     {
-       
+        // checking for limit
+        //cannot sell to himself
+        require(msg.sender != _buyerAddress, "You already own this product");
+        require(ownerProductCount[msg.sender] > 0, "You own 0 product");
+
+        //buyer must be registered
+        require(
+            sellerAddressToSellerIndex[_buyerAddress] != 0,
+            "Buyer is not registered as a seller"
+        );
+
+        // changing owner of product here
+        productToOwner[_productId] = _buyerAddress;
+
+        // changing limit
+        ownerProductCount[msg.sender]--;
+        ownerProductCount[_buyerAddress]++;
+
+        emit productSoldSuccessfully(_productId, msg.sender, _buyerAddress);
+
+        return true;
     }
 
     function addProduct(
@@ -74,7 +179,42 @@ contract Counterfeit is Ownable {
         string memory _name
     ) external onlyOwner returns (bool) {
         // checking that both product and secret ids are not used before
-        
+        require(
+            productIdToProductIndex[_productId] == 0,
+            "Product id is used before"
+        );
+        require(
+            secretIdToProductIndex[_secretId] == 0,
+            "Secret id is used before"
+        );
+
+        //assigning owner to the one who initiated the call...
+        productToOwner[_productId] = msg.sender;
+        ownerProductCount[msg.sender]++;
+
+        //addint product to products array
+        products.push(Product(_productId, _price, _name, false));
+
+        //setting index in mappings
+        productIdToProductIndex[_productId] = products.length - 1;
+        secretIdToProductIndex[_secretId] = products.length - 1;
+
+        emit newProductAdded(_productId, msg.sender);
+
+        return true;
+    }
+
+    function productSeller(uint256 _productId)
+        external
+        view
+        returns (string memory name, string memory details)
+    {
+        address sellerAddress = productToOwner[_productId];
+        uint256 sellerIndex = sellerAddressToSellerIndex[sellerAddress];
+        require(sellerIndex != 0, "Seller might not be registered");
+
+        sellerDetails memory seller = sellers[sellerIndex];
+        return (seller.name, seller.details);
     }
 
     function productDetails(uint256 _productId)
@@ -86,7 +226,9 @@ contract Counterfeit is Ownable {
             bool isSold
         )
     {
-       
+        uint256 index = productIdToProductIndex[_productId];
+        Product memory tP = products[index];
+        return (tP.name, tP.price, tP.isSold);
     }
 
     //----------Functions End-------------//
@@ -110,5 +252,5 @@ contract Counterfeit is Ownable {
     {
         return sellers.length;
     }
-
+    //--------Dev Only Owner End----------//
 }
