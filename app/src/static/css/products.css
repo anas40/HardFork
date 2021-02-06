@@ -1,0 +1,67 @@
+.productList h1 {
+  text-align: center;
+  padding: 5vh;
+  color: #272343;
+}
+
+.productList {
+  min-height: 100vh;
+  text-align: center;
+  background: linear-gradient(
+    rgba(246, 247, 249, 0.8),
+    rgba(246, 247, 249, 0.8)
+  );
+}
+
+.list-group {
+  width: 100%;
+  margin: auto;
+  font-size: 25px;
+  text-align: left;
+}
+
+.no-product-message {
+  font-size: 25px;
+}
+.berber {
+  width: 50vw;
+  height: 110px;
+  background-color: #353535;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.berber-image {
+  width: 50px;
+  height: 50px;
+  background-color: #636e72;
+  margin-left: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  text-align: center;
+  float: left;
+}
+.berber-fullname {
+  font-size: 25px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  padding-left: 80px;
+  padding-top: 10px;
+  color: #b2bec3;
+}
+.berber-dukkan {
+  font-size: 25px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  padding-left: 80px;
+  margin-top: -20px;
+  color: #636e72;
+}
+
+@media only screen and (max-width: 600px) {
+  .berber {
+    width: 80vw;
+  }
+}
