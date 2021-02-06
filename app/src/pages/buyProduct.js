@@ -28,17 +28,17 @@ export default function BuyProduct() {
         try {
             setLoading(true)
 
-            const response = await provider.sendTransaction('buyProduct',[values.secretId],true)
+            const response = await provider.sendTransaction('buyProduct', [values.secretId], true)
             if (response) {
                 setSecretId('')
                 setPopup(`Product bought successfully`)
             }
         }
         catch (error) {
-            setPopup(error.message)
+            setPopup("Product is Fake")
             console.log(error.message)
         }
-        finally{
+        finally {
             setLoading(false)
         }
     }
