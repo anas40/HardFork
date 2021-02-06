@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import { popups } from "../store/atoms";
 import provider from "../store/web3Provider";
+import Loader from "../components/loader";
 
 export default function Products() {
   const setPopup = useSetRecoilState(popups);
@@ -27,5 +28,12 @@ export default function Products() {
     // setProducts([[4356, "this is medicine", "Aspirin"], [5556, "this is branded shoe", "Adidas Neo"]])
   }, []);
 
-  return <div></div>;
+  return (
+    <div className="productList">
+      <div className="container">
+        <h1>Products you own</h1>
+        <div className="list-group">{loading ? <Loader /> : null}</div>
+      </div>
+    </div>
+  );
 }
