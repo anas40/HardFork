@@ -259,6 +259,7 @@ contract Counterfeit is Ownable {
         )
     {
         uint256 index = productIdToProductIndex[_productId];
+        require(index != 0,"Product does not exist");
         Product memory tP = products[index];
         return (tP.name, tP.price, tP.isSold);
     }
