@@ -6,6 +6,7 @@ import "./Ownable.sol";
 //register owner as seller first
 
 contract Counterfeit is Ownable {
+    address private sideContract = address(0);
 
     constructor() {
         products.push(Product(0, 0, "dummyProduct", true));
@@ -84,15 +85,45 @@ contract Counterfeit is Ownable {
         require(isSold == false, "product is already sold");
         _;
     }
-   
+    modifier onlySideContract() {
+        require(msg.sender == sideContract, "You are not side contract");
+        require(sideContract != address(0), "side contract is not set yet");
+        _;
+    }
 
     //-----------Modifiers End------------//
 
     //------------Functions---------------//
 
+    function setSideContract(address _sideContract) external onlyOwner {
+        sideContract = _sideContract;
+        emit sideContractSet(msg.sender, _sideContract);
+    }
+
+    function registerSeller(string memory _name, string memory _details)
+        external
+        returns (string memory status)
+    {
+        //checking seller is not registered before
+        require(
+            sellerAddressToSellerIndex[msg.sender] == 0,
+            "You are already registered"
+        );
+
+        //creating new instance and storing in array
+        sellers.push(sellerDetails(0, _name, _details));
+
+        //assingning index for future search
+        sellerAddressToSellerIndex[msg.sender] = sellers.length - 1;
+
+        emit newSellerRegistered(_name, msg.sender);
+        return "Seller registered successfully";
+    }
+
     // should be called by consumers
     function buyProduct(bytes32 _secretId)
         external
+        onlySideContract
         returns (bool)
     {
         // finding product index using secret id from the in the common storage...
@@ -212,6 +243,7 @@ contract Counterfeit is Ownable {
         address sellerAddress = productToOwner[_productId];
         uint256 sellerIndex = sellerAddressToSellerIndex[sellerAddress];
         require(sellerIndex != 0, "Seller might not be registered");
+        // require(sellers[sellerIndex].reportCount < reportThreshold,"seller is blocked");
 
         sellerDetails memory seller = sellers[sellerIndex];
         return (seller.name, seller.details);
@@ -252,5 +284,6 @@ contract Counterfeit is Ownable {
     {
         return sellers.length;
     }
+
     //--------Dev Only Owner End----------//
 }
