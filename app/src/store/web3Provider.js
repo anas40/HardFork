@@ -10,7 +10,7 @@ const myPrivateEthereumNode = {
 
 const provider = {
     contractAddress: '0xeea2Fc1D255Fd28aA15c6c2324Ad40B03267f9c5',
-    // buyAddress: '0x63a8656265d04Fe4c11F4b81e3d1E061b582177d',
+    buyAddress: '0x63a8656265d04Fe4c11F4b81e3d1E061b582177d',
     w3: null,
     account: null,
     contract: null,
@@ -54,7 +54,7 @@ const provider = {
 
     setContract: async function () {
         const contract = await new this.w3.eth.Contract(Abi.counterfeitAbi, this.contractAddress);
-        // const side = await new this.w3.eth.Contract(Abi.buyAbi, this.buyAddress)
+        const side = await new this.w3.eth.Contract(Abi.buyAbi, this.buyAddress)
         this.buyContract = side
         this.contract = contract;
     },
