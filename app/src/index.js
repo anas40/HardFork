@@ -1,8 +1,9 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { RecoilRoot } from 'recoil'
-import App from './App';
+
 import Loader from './components/loader'
+import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 ReactDOM.render(
