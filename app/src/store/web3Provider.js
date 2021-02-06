@@ -4,19 +4,19 @@ import Abi from './abi'
 import keccak256 from 'keccak256'
 // private ganache node...
 const myPrivateEthereumNode = {
-    nodeUrl: 'http://127.0.0.1:8545', // node url
-    chainId: 4444, // chainid
+    nodeUrl: 'https://rpc-mumbai.matic.today', // node url
+    chainId: 80001, // chainid
 };
 
 const provider = {
-    contractAddress: '0xeea2Fc1D255Fd28aA15c6c2324Ad40B03267f9c5',
+    contractAddress: '0xac9c38118f05792Bf379479E3912F35d17F65819',
     buyAddress: '0x63a8656265d04Fe4c11F4b81e3d1E061b582177d',
     w3: null,
     account: null,
     contract: null,
     buyContract: null,
     portis: null,
-    logout:async function () {
+    logout: async function () {
         await this.portis.logout()
     },
     keccakHash: function (secretId) {
@@ -69,19 +69,19 @@ const provider = {
             return result;
         } catch (error) {
             console.log(error);
-            return { message:error.message, code:204};
+            throw new Error({ message: error.message, code: 204 });
         }
     },
 
     // method for transaction that require fee....
     sendTransaction: async function (method, parameters = [], toBuy = false) {
         try {
-            if (toBuy) { 
+            if (toBuy) {
                 const transaction = {
                     from: this.account,
                     to: this.buyAddress,
                     gas: 500000,
-                    gasPrice:0
+                    gasPrice: 0
                 }
                 const receipt = await this.buyContract.methods[method](...parameters).send(transaction);
                 console.log(receipt);
@@ -92,7 +92,7 @@ const provider = {
                     from: this.account,
                     to: this.contractAddress,
                     gas: 500000,
-                    gasPrice:0
+                    gasPrice: 0
                 }
                 const receipt = await this.contract.methods[method](...parameters).send(transaction);
                 console.log(receipt);
@@ -100,7 +100,7 @@ const provider = {
             }
         } catch (error) {
             console.log(error);
-            return new Error(error.message)
+            throw new Error(error.message)
         }
     }
 }
