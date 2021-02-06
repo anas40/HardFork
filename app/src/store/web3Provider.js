@@ -69,7 +69,10 @@ const provider = {
             return result;
         } catch (error) {
             console.log(error);
-            throw new Error({ message: error.message, code: 204 });
+            const err = new Error()
+            err.message = error.message
+            err.code = 204
+            throw err;
         }
     },
 

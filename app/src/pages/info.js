@@ -22,7 +22,7 @@ export default function ProductInfo() {
                 setProductInfo(response);
             }
             catch (e) {
-                setPopup("Failed to fetch product info")
+                // setPopup("Product does not exist")
                 console.error(e);
             }
         }
@@ -30,12 +30,11 @@ export default function ProductInfo() {
         async function fetchSellerInfo() {
             try {
                 const response = await provider.callTransaction('productSeller', [productId])
-
                 setSellerInfo(response);
 
             }
             catch (e) {
-                setPopup("Product Already Sold")
+                // setPopup("Product Already Sold")
                 console.error(e);
             }
             finally {
@@ -46,58 +45,71 @@ export default function ProductInfo() {
         fetchSellerInfo();
     }, [])
 
-
     if (loading) {
         return (<Loader />)
     }
     return (
 
         <div className="container CI my-4">
-            <div className="d-flex small">
-                <div className="left">
-                    <div>
-                        <div className="product-details">
-                            <h2>Product Info</h2>
+            {productInfo.price !== "0" ?
+                <>
+                    <div className="d-flex small">
+                        <div className={sellerInfo ? 'left' : 'center'}>
                             <div>
-                                <p>Name : <span>
-                                    {productInfo.name}
-                                </span></p>
+                                <div className="product-details">
+                                    <h2>Product Info</h2>
+                                    {!sellerInfo && <h3>Product Already Sold</h3>}
 
-                                <p>Price : <span>
-                                    {productInfo.price}
-                                </span></p>
+                                    <div>
+                                        <p>Name : <span>
+                                            {productInfo.name}
+                                        </span></p>
 
-                                <p>ID : <span>
-                                    {productId}
-                                </span></p>
+                                        <p>Price : <span>
+                                            {productInfo.price}
+                                        </span></p>
 
+                                        <p>ID : <span>
+                                            {productId}
+                                        </span></p>
+
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
+
+                        {sellerInfo &&
+                            <div className="right">
+                                <div>
+                                    <div className="product-details">
+                                        <h2>Seller Info</h2>
+                                        <p>Name : <span>
+                                            {sellerInfo.name}
+                                        </span></p>
+
+                                        <p>Details : <span>
+                                            {sellerInfo.details}
+                                        </span></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
                     </div>
-                </div>
-                <div className="right">
-                    <div>
-                        <div className="product-details">
-                            <h2>Seller Info</h2>
-                            <p>Name : <span>
-                                {sellerInfo.name}
-                            </span></p>
-
-
-                            <p>Details : <span>
-                                {sellerInfo.details}
-                            </span></p>
-
+                    {sellerInfo && <div className="fullWidth">
+                        <div className="buttons">
+                            <Link to="/buy" className="btn btn-primary btn-lg ">BUY</Link>
                         </div>
                     </div>
+                    }
+                </>
+                : <div className="small">
+                    <div className="errorText">Product never existed</div>
                 </div>
-            </div>
-            <div className="fullWidth">
+            }
 
-                <div className="buttons">
-                    <Link to="/buy" className="btn btn-primary btn-lg ">BUY</Link>
-                </div>
-            </div>
         </div>
 
     )
