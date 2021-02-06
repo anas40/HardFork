@@ -12,6 +12,7 @@ import provider from "../store/web3Provider";
 export default function ProductInfo() {
   const setPopup = useSetRecoilState(popups);
 
+  const [productInfo, setProductInfo] = useState(" ");
   const productId = window.location.pathname.split("/")[2];
   const [loading, setLoading] = useState(false);
 
@@ -45,11 +46,11 @@ export default function ProductInfo() {
                 <h2 className="center-heading">Product Info</h2>
                 <div className="product-details">
                   <p>
-                    Product Name : <span>Product Name goes here</span>
+                    Product Name : <span>{productInfo.name}</span>
                   </p>
 
                   <p>
-                    Product Price : <span>Product Price goes here</span>
+                    Product Price : <span>{productInfo.price}</span>
                   </p>
 
                   <p>
@@ -64,7 +65,9 @@ export default function ProductInfo() {
       <div>
         <div className="qrcode-container">
           <h3>Qr Code : </h3>
-          <div className="qrParent">QR Code goes here</div>
+          <div className="qrParent">
+            {productId && <QRCode value={productId} />}
+          </div>
         </div>
       </div>
     </div>
