@@ -11,6 +11,9 @@ export default function ProductQrCode() {
       <h2 className="center-heading message-heading">
         PRODUCT ADDED SUCCESSFULLY !
       </h2>
+      <div className="qrcode-container">
+        <QRCode value={productId} />
+      </div>
       <h2 className="message-heading">PRODUCT QR CODE</h2>
     </div>
   );
