@@ -1,5 +1,5 @@
-const Migrations = artifacts.require("Migrations");
+const Counterfeit = artifacts.require('Counterfeit');
 
-module.exports = function (deployer) {
-  deployer.deploy(Migrations);
+module.exports = async function (deployer) {
+  await deployer.deploy(Counterfeit);
 };
