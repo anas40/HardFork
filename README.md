@@ -47,7 +47,7 @@ We are working on a blockchain based decentralized web application to fight prod
 1.  Sell Product to consumer.
 2.  Sell Product to another seller.
 
-# Consumer
+# Consumer Functionalities:
 
 1.  Verify the product whether it is genuine or fake by scanning the QR-Code or Product ID.
 2.  Buy Product.
