@@ -1,7 +1,7 @@
 # Team Name - HardFork
 
 <h1 align="center" style="margin-top: 1em; margin-bottom: 3em;">
-  <p><a href="#"><img alt="forge logo" src="./logo_forge.jpeg" width="200"></a></p>
+  <p><a href="#"><img alt="forge logo" src="./demo-screenshots/logo_forge.jpeg" width="200"></a></p>
   <p>🔥 Forge</p>
 </h1>
 
