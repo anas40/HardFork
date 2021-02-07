@@ -1,4 +1,7 @@
-# HardFork
+<h1 align="center" style="margin-top: 1em; margin-bottom: 3em;">
+  <p><a href="#"><img alt="ethereum logo" src="./eth-transparent.png" alt="ethereum.org" width="125"></a></p>
+  <p>🔥 HardFork</p>
+</h1>
 
 We are working on a blockchain based decentralized web application to fight product counterfeiting. This app help the consumers to don't rely on the the word of the mouth of the seller but the product itself.
 
