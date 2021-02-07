@@ -12,16 +12,6 @@ We are working on a blockchain based decentralized web application to fight prod
 6. Matic
 7. Infura
 
-# Flowchart
-
-```mermaid
-graph LR
-A[Owner] -- Can Sell To --> B((Sellers))
-B -- Can Sell To --> D{Consumers}
-A -- Can Sell Directly To --> D{Consumers}
-B -- Can Sell To --> E{Other Sellers}
-```
-
 # Screenshots
 
 # Home Page:
