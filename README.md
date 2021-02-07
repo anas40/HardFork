@@ -22,6 +22,7 @@ We are working on a blockchain based decentralized web application to fight prod
 # Home Page:
 
 1.  Allow Owner, Seller and Consumer to register and login through portis.
+    ![register-as-seller](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/register-as-seller.png)
 2.  Allow Users to Verify the product whether it is genuine or fake.
 
 ![homepage](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/homepage.png)
@@ -37,10 +38,8 @@ We are working on a blockchain based decentralized web application to fight prod
 
 # Seller Functionalities:
 
-1.  Register as Seller
-    ![register-as-seller](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/register-as-seller.png)
-2.  Sell Product to consumer.
-3.  Sell Product to another seller.
+1.  Sell Product to consumer.
+2.  Sell Product to another seller.
 
 # Consumer
 
