@@ -17,40 +17,39 @@ We are working on a blockchain based decentralized web application to fight prod
 6. Matic
 7. Infura
 
-# Screenshots
-
-# Home Page:
-
-1.  Allow Owner, Seller and Consumer to register and login through portis.
-    ![register-as-seller](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/register-as-seller.png)
-2.  Allow Users to Verify the product whether it is genuine or fake.
-    ### Scan QR
-    ![scan-qr](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/scan-qr.png)
-    ### Get the details
-    ![verified-product](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/verified-product.png)
-
-### Homepage
-
-![homepage](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/homepage.png)
-
-# Owner Functionalities:
+# Functionalities
+    
+## Owner Functionalities:
    1. Add Product.
    2. Sell Product to seller.
    4. Transfer Ownership to Other account
-   5. Buy/Verify the product
+   5. Buy/Verify the product as a consumer
    
- # Seller Functionalities:
+ ## Seller Functionalities:
    1. Sell Product to another seller.
    2. Register themselves as a seller.
-   3. Buy/Verify the product
+   3. Buy/Verify the product as a consumer
    
- # Consumer
+ ## Consumer
    1. Verify the product whether it is genuine or fake by scanning the QR-Code or Product ID.
    2. Buy Product.
+   
+ ### Get the details
+    
+![verified-product](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/gif/verifyGIF.gif)
+    
+ ### Case of fake product
+    
+ ![verified-product](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/gif/fake.gif)
+    
+
 
 1.  Add Product
-    ![add-product](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/add-product.png)
+    ![add-product](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/gif/addProductGIF.gif)
+    
 2.  Product List
     ![product-list](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/product-list.png)
-3.  Sell Product to seller.
-4.  Sell Product direct to consumer.
+    
+3.  Seller registration form.
+    ![register-as-seller](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/register-as-seller.png)
+    
