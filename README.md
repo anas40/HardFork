@@ -1,6 +1,8 @@
+# Team Name - HardFork
+
 <h1 align="center" style="margin-top: 1em; margin-bottom: 3em;">
   <p><a href="#"><img alt="forge logo" src="./forge-logo.jpeg" width="200"></a></p>
-  <p>🔥 HardFork</p>
+  <p>🔥 Forge</p>
 </h1>
 
 We are working on a blockchain based decentralized web application to fight product counterfeiting. This app help the consumers to don't rely on the the word of the mouth of the seller but the product itself.
@@ -35,8 +37,10 @@ We are working on a blockchain based decentralized web application to fight prod
 
 # Seller Functionalities:
 
-1.  Sell Product to consumer.
-2.  Sell Product to another seller.
+1.  Register as Seller
+    ![register-as-seller](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/register-as-seller.png)
+2.  Sell Product to consumer.
+3.  Sell Product to another seller.
 
 # Consumer
 
