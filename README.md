@@ -1,5 +1,5 @@
 <h1 align="center" style="margin-top: 1em; margin-bottom: 3em;">
-  <p><a href="#"><img alt="forge logo" src="./forge-logo.jpeg" width="125"></a></p>
+  <p><a href="#"><img alt="forge logo" src="./forge-logo.jpeg" width="200"></a></p>
   <p>🔥 HardFork</p>
 </h1>
 
