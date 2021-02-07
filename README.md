@@ -1,5 +1,5 @@
 <h1 align="center" style="margin-top: 1em; margin-bottom: 3em;">
-  <p><a href="#"><img alt="ethereum logo" src="./eth-transparent.png" alt="ethereum.org" width="125"></a></p>
+  <p><a href="#"><img alt="forge logo" src="./forge-logo.png" width="125"></a></p>
   <p>🔥 HardFork</p>
 </h1>
 
@@ -26,9 +26,12 @@ We are working on a blockchain based decentralized web application to fight prod
 
 # Owner Functionalities:
 
-1.  Add Product.
-2.  Sell Product to seller.
-3.  Sell Product direct to consumer.
+1.  Add Product
+    ![add-product](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/add-product.png)
+2.  Product List
+    ![product-list](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/product-list.png)
+3.  Sell Product to seller.
+4.  Sell Product direct to consumer.
 
 # Seller Functionalities:
 
