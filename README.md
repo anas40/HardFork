@@ -22,7 +22,7 @@ We are working on a blockchain based decentralized web application to fight prod
 1.  Allow Owner, Seller and Consumer to register and login through portis.
 2.  Allow Users to Verify the product whether it is genuine or fake.
 
-![name-of-you-image](https://github.com/gauharayub/HardFork/blob/main/Demo%20Screenshots/WhatsApp%20Image%202021-02-07%20at%2010.14.48%20AM.jpeg)
+![homepage](https://github.com/gauharayub/HardFork/blob/main/demo-screenshots/homepage.png)
 
 # Owner Functionalities:
 
