@@ -5,14 +5,14 @@ import keccak256 from 'keccak256'
 
 // private ganache node...
 const myPrivateEthereumNode = {
-    nodeUrl: 'http://127.0.0.1:7545', // node url
-    chainId: 5777, // chainid
+    nodeUrl: 'https://rpc-mumbai.matic.today', // node url
+    chainId: 80001, // chainid
 };
 
 const provider = {
     // anas-contract - 0x5017A545b09ab9a30499DE7F431DF0855bCb7275
-    contractAddress: '0x624Df822a06Fa77AAc32c5ac647A4fCaA4D21272',
-    buyAddress: '0xCC83022005588F5C2Cb0348e2D72987524e4a003',
+    contractAddress: '0xac9c38118f05792Bf379479E3912F35d17F65819',
+    buyAddress: '0x63a8656265d04Fe4c11F4b81e3d1E061b582177d',
     w3: null,
     account: null,
     contract: null,
@@ -50,7 +50,7 @@ const provider = {
     },
 
     setProvider: async function () {
-        this.portis = await new Portis('42dca739-f49f-4002-a181-82cdaadc7dd5', 'rinkeby', { gasRelay: true });
+        this.portis = await new Portis('42dca739-f49f-4002-a181-82cdaadc7dd5', myPrivateEthereumNode);
         this.w3 = await new Web3(this.portis.provider)
     },
 
