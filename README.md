@@ -1,3 +1,42 @@
+# Steps to run the project
+
+1. install dependencies for smart contracts
+
+```
+npm i
+```
+
+2. Deploy smart contracts. Ex - 
+
+ ```
+ truffle deploy --network development
+ ```
+
+3. Copy Address of deployed contracts to React app (in file web3Provider.js)
+
+    update contractAddress (Counterfeit Contract) and buyAddress (Buy Contract)
+
+4. Update nodeUrl and chainId (in file web3Provider.js)
+
+5. Install React app dependencies
+
+```
+cd app
+npm i
+```
+
+5. Run React app
+
+```
+cd app
+npm start
+```
+
+
+###### ABI of smart contracts are stored in file abi.js in react app
+
+
+
 # Team Name - HardFork
 
 <h1 align="center" style="margin-top: 1em; margin-bottom: 3em;">
